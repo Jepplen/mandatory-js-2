@@ -41,7 +41,7 @@ function renderBoard() {
   santaBagDiv.id = "santaBagDiv";
   santaBagImg.id = "santaBagImg";
   santaBagImg.className = "runAnimation";
-  santaBagImg.src = "./images/santabag-shadow.png";
+  santaBagImg.src = "./resources/santabag-shadow.png";
   restartButtonDiv.id = "restartButtonDiv";
   restartButton.id = "restartButton";
   restartButton.textContent = "Play again!";
@@ -195,9 +195,9 @@ function renderGameIntro() {
 
   gameBoxTopContainer.id = "gameBoxTopContainer";
   gameBoxTopImage.id = "gameBoxTopImage";
-  gameBoxTopImage.src = "./images/gameboxlid-transparent.png";
+  gameBoxTopImage.src = "./resources/gameboxlid-transparent.png";
   gameBoxTopImageBackground.id = "gameBoxTopImageBackground";
-  gameBoxTopImageBackground.src = "./images/gameboxlid.jpg";
+  gameBoxTopImageBackground.src = "./resources/gameboxlid.jpg";
   gameBoxTopImageGlow.id = "gameBoxTopImageGlow";
   gameBoxTopImageGlow2.id = "gameBoxTopImageGlow2";
   gameBoxTopImageGlow3.id = "gameBoxTopImageGlow3";
@@ -331,7 +331,7 @@ function checkMoves(restartButtonDiv) {
          xmasWreathContainer.id = "xmasWreathContainer";
          winnerBoardInner.id = "winnerBoardInner";
          xmasWreathImg.id = "xmasWreathImg";
-         xmasWreathImg.src = "./images/wreath.png";
+         xmasWreathImg.src = "./resources/wreath.png";
          winnerText.id = "winnerText";
          winnerText.textContent = "The winner is " + won + "!";
          winnerText.style.paddingLeft = "175px";
@@ -350,7 +350,7 @@ function checkMoves(restartButtonDiv) {
            restartButtonDiv.style.animation = "restartButtonSlide 2s";
            setTimeout(function(){
                restartButtonDiv.style.left = "1200px";
-             }, 2000);
+             }, 1999);
          }, 1000);
        }, 1700);
 
@@ -369,7 +369,7 @@ function checkMoves(restartButtonDiv) {
         xmasWreathContainer.id = "xmasWreathContainer";
         winnerBoardInner.id = "winnerBoardInner";
         xmasWreathImg.id = "xmasWreathImg";
-        xmasWreathImg.src = "./images/wreath.png";
+        xmasWreathImg.src = "./resources/wreath.png";
         winnerText.id = "winnerText";
         winnerText.textContent = "It's a Draw!";
         winnerText.style.paddingLeft = "215px";
@@ -388,7 +388,7 @@ function checkMoves(restartButtonDiv) {
           restartButtonDiv.style.animation = "restartButtonSlide 2s";
           setTimeout(function(){
               restartButtonDiv.style.left = "1200px";
-            }, 2000);
+            }, 1999);
         }, 1000);
       }, 1700);
        gameMoves = [];
@@ -416,14 +416,17 @@ function renderRoom() {
   let mask = document.createElement("div");
   let gameStartButton = document.createElement("div");
   let gameStartButtonText = document.createElement("p");
+  let gameStartText = document.createElement("p");
+  let cottageContainer = document.createElement("div");
+  let cottageImg = document.createElement("img");
 
   mask.id = "mask";
   gameStartButtonText.id = "gameStartButtonText";
   gameStartButton.id = "gameStartButton";
   gbTop.id = "gbTop";
-  gbTop.src = "./images/gameboxlid.jpg"
+  gbTop.src = "./resources/gameboxlid.jpg"
   gbCover.id = "gbCover";
-  gbCover.src = "./images/game-cover.png"
+  gbCover.src = "./resources/game-cover.png"
   roomContainer.id = "roomContainer";
   gameMiniatureContainer.id = "gameMiniatureContainer";
   fireplaceContainer.id = "fireplaceContainer";
@@ -436,6 +439,12 @@ function renderRoom() {
   findText.id = "findText";
   findText.textContent = "🠄 Click here";
   gameStartButtonText.textContent = "Start";
+  gameStartText.id = "gameStartText";
+  cottageContainer.id = "cottageContainer";
+  cottageImg.id = "cottageImg";
+  cottageImg.src = "./resources/cottage.jpg";
+
+  gameStartText.innerHTML = "Turn your sound ON and set the resolution to 1920x1080 <br> Please no console the first time ;)";
 
   gameMiniatureContainer.appendChild(gbTop);
   gameMiniatureContainer.appendChild(gbCover);
@@ -450,11 +459,14 @@ function renderRoom() {
   roomContainer.appendChild(findGame);
   findGame.appendChild(findText);
   body.appendChild(mask);
-  mask.appendChild(gameStartButton);
+  body.appendChild(cottageContainer);
+  cottageContainer.appendChild(cottageImg);
+  cottageContainer.appendChild(gameStartButton);
+  cottageContainer.appendChild(gameStartText);
   gameStartButton.appendChild(gameStartButtonText)
 
   findGame.style.display = "none";
-
+  gameStartButton.style.animation = "gameStartButtonSlideIn 6s";
 
 // Starts and enters the game room
   gameStartButton.addEventListener("click", function() {
@@ -463,16 +475,35 @@ function renderRoom() {
         findGame.style.display = "block";
         findGame.style.animation = "findGameSlideIn 2s";
       };
-    }, 15000);
-
+    }, 30000);
     gameStartButton.style.animation = "gameStartButtonFadeOut 2s"
+    gameStartText.style.animation = "gameStarTextFadeOut 1s";
+    setTimeout(function() {
+      gameStartText.style.display = "none";
+    }, 950);
     setTimeout(function(){
       gameStartButton.style.display = "none";
     }, 1950);
     setTimeout(function(){
-        mask.style.animation = "maskFadeOut 3s";
+        cottageContainer.style.animation = "cottageFadeOut 3s";
         setTimeout(function(){
-          mask.style.display = "none"
+          cottageContainer.style.display = "none"
+          setTimeout(function(){
+            let audio1 = new Audio('./resources/dooropen.mp3');
+            audio1.play();
+            setTimeout(function(){
+              let audio2 = new Audio('./resources/doorclose.mp3');
+              audio2.play();
+              setTimeout(function() {
+                mask.style.animation = "maskFadeOut 4s";
+                let audio3 = new Audio('./resources/song.mp3');
+                audio3.play();
+                setTimeout(function(){
+                  mask.style.display = "none"
+                }, 3950);
+              }, 2000);
+            }, 3000);
+          }, 0);
         }, 2950);
       }, 3000);
   });
