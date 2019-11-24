@@ -4,120 +4,378 @@
 }
 
 body {
-  background-color: #fe2a2a;
-}
-
-header {
-  width: 100%;
-  height: 50px;
-}
-
-main {
   width: 100vw;
+  height: 100vh;
+  position: relative;
   overflow: hidden;
 }
 
+main {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 
-#gameBoard {
-
-  position: relative;
-  margin-top: 75px;
-  margin-left: 350px;
-  width: 510px;
-  height: 510px;
-  background-color: #28b151;
-  display: flex;
-  flex-wrap: wrap;
-  border: 2px solid white;
+#mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
   z-index: 1;
 }
 
+@keyframes maskFadeOut {
+  to {opacity: 0}
+}
 
-#gameBoardMask {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+
+/* ============ Game start button (first page) =================== */
+@keyframes gameStartButtonFadeOut {
+  to {transform: scale(0)}
+}
+
+#gameStartButton {
+  width: 200px;
+  height: 75px;
+  z-index: 21;
+  margin: auto;
+  margin-top: 300px;
+  background-color: #7a7a7a;
+  line-height: 75px;
+  border-radius: 7px;
+}
+
+#gameStartButton:hover {
+  background-color: #a6a6a6;
+  cursor: default;
+}
+
+#gameStartButton:active {
+  background-color: #4a4a4a;
+}
+
+#gameStartButtonText {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+
+
+/* ==================== Game board and animation ===================== */
+#gameBoardContainer {
+  position: relative;
+  margin-left: 450px;
+  margin-top: 80x;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   z-index: 2;
 }
 
+@keyframes gameboardContainerSlide {
+0% { transform: translateY(-500px) scale(0.4)}
+100% { transform: translateX(0px) scale(1)}
+}
+
+#gameBoxTopContainer {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+#gameBoxTopImage {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 470px;
+  height: 470px;
+  z-index: 5;
+}
+
+#gameBoxTopImageBackground {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 470px;
+  height: 470px;
+  z-index: 3;
+}
+
+#gameBoxTopImageGlow {
+  background-color: #fff734;
+  position: absolute;
+  top: 476px;
+  left: 100px;
+  width: 1px;
+  height: 5px;
+  z-index: 4;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 16px #fff,
+    0 0 25px 16px #fff734,
+    0 0 35px 16px #fffc96;
+}
+
+@keyframes glowTextSlide {
+  from {transform: translate(0px)}
+  to {transform: translate(380px)}
+}
+
+#gameBoxTopImageGlow2 {
+  background-color: #fff734;
+  position: absolute;
+  top: 350px;
+  left: 300px;
+  width: 1px;
+  height: 1px;
+  z-index: 4;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 16px #fff,
+    0 0 25px 16px #fff734,
+    0 0 35px 16px #fffc96;
+}
+
+@keyframes glowLineSlide {
+  0% { transform: translate(0px) }
+  10% { transform: translate(-180px, 0px) }
+  20% { transform: translate(-200px, -100px) }
+  30% { transform: translate(-190px, -200px) }
+  60% { transform: translate(-180px, 0px) }
+}
+
+#gameBoxTopImageGlow3 {
+  background-color: #fff734;
+  position: absolute;
+  top: 250px;
+  left: 250px;
+  width: 1px;
+  height: 1px;
+  z-index: 4;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 16px #fff,
+    0 0 25px 16px #fff734,
+    0 0 35px 16px #fffc96;
+}
+
+@keyframes glowLineSlide2 {
+  0% {transform: translate(0px)}
+  10% {transform: translate(-130px, -130px)}
+  20% {transform: translate(-30px, -140px)}
+  30% {transform: translate(60px, -150px)}
+  60% {transform: translate(200px, -130px)}
+}
+
+
+#gameBoxTopImageGlow4 {
+  background-color: #fff734;
+  position: absolute;
+  top: 200px;
+  left: 300px;
+  width: 1px;
+  height: 1px;
+  z-index: 4;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 16px #fff,
+    0 0 25px 16px #fff734,
+    0 0 35px 16px #fffc96;
+}
+
+@keyframes glowLineSlide3 {
+  0% {transform: translate(0px)}
+  10% {transform: translate(170px, -70px)}
+  30% {transform: translate(150px, 100px)}
+  60% {transform: translate(170px, 260px)}
+  80% {transform: translate(150px, 50px)}
+}
+
+#gameBoard {
+  width: 450px;
+  height: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 4px solid rgb(52, 36, 19);
+  background-image: url('./images/gb-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  background-size: 100%;
+  z-index: 1;
+  box-shadow: 34px 39px 26px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 34px 39px 26px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 34px 39px 26px 0px rgba(0,0,0,0.75);
+}
+
+@keyframes slideBoxTop {
+  10% { transform: scale(1.04) translateY(-5px) }
+ 35% { transform: scale(1.04) translateY(-2px) translateX(10px) }
+ 100% { transform: scale(1.04) translateX(-2000px)}
+}
+
+#bgSquares {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 
 .box{
   box-sizing: border-box;
-  width: 170px;
-  height: 170px;
-  border: 4px solid white;
+  width: 150px;
+  height: 150px;
+  border: 4px solid rgba(238, 226, 169, 0.1);
+  outline: 1px solid rgba(238, 226, 169, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: -5px 0px 11px 13px rgba(0,0,0,0.42) inset;
+  -webkit-box-shadow: -5px 0px 11px 13px rgba(0,0,0,0.42) inset;
+  -moz-box-shadow: -5px 0px 11px 13px rgba(0,0,0,0.42) inset;
 }
 
-
 .box .spanX {
-  font-size: 130px;
+  font-size: 110px;
   color: white;
-  /* transform: translateX(300px); */
-  /* transition: all 10s; */
-  /* transform: translate(600px, 900px); */
+  margin-top: -10px;
   animation: slide 1s forwards;
 }
 
-
-
-
-
 @keyframes slide {
-  /* 0%{
-     transform: translate(-50%, -50%) rotate(0deg);
-   }
-   100%{
-     transform: translate(-50%, -50%) rotate(180deg);
-   } */
-
-  /*from {transform: translate(700px, 300px  */
-  to {transform: translate(0px)}
-
-  /* @keyframes drawArc1 {
-    0%   { transform: rotate(180deg);  }
-    100% { transform: rotate(0deg);    }
-}
-
-@keyframes drawArc2 {
-    0%   { transform: rotate(-180deg); }
-    100% { transform: rotate(0deg);    }
-} */
+  90% {font-size: 150px}
+  100% {transform: translate(0px) scale(0.8)}
 }
 
 .box .spanO {
   font-size: 100px;
   color: white;
-  margin-top: 25px;
+  margin-top: 10px;
   animation: slide 1s forwards;
 }
-
 
 .box:hover {
   cursor: default;
 }
 
+
+/* ================= Santa bag and animation =================== */
 #santaBagDiv {
   position: absolute;
-  right: 50px;
+  left: 10px;
   bottom: 10px;
+  z-index: 1;
+}
+
+#santaBagImg {
+  width: 275px;
+  height: 200px;
+  transition: transform 0.1s;
+}
+
+#santaBagImg:active {
+  transform: scale(1.1) rotate(5deg);
+}
+
+@keyframes santaBagEnd {
+  to {transform: scale(0)}
+}
+
+@keyframes santaBagStart {
+  0% { transform: scale(0) }
+  40% { transform: scale(1.1)}
+  65% { transform: scaleX(0.9)}
+  80% { transform: scaleY(1.07)}
+  100% {transform: scale(1)}
+}
+
+@keyframes santaBagShake1 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake2 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake3 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake4 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake5 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake6 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake7 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake8 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
+}
+
+@keyframes santaBagShake9 {
+  0% {transform: scale(0.9) skew(0.05deg)}
+  10% {transform: scale(1.1) skew(-0.05deg)}
+  20% {transform: scale(0.9) skew(0.05deg)}
+  30% {transform: scale(1.1) skew(-0.05deg)}
 }
 
 
+/* ===================== Restart button and animation =================== */
 #restartButtonDiv {
-
   position: absolute;
-  left: 400px;
+  left: 600px;
   top: 170px;
   width: 200px;
   height: 75px;
-  background-color: #28b151;
+  background-color: #2d8748;
   border-radius: 10px;
   border: 1px solid white;
   text-align: center;
-  transition: transform 2s;
+  z-index: 1;
+  display: none;
 }
 
 #restartButtonDiv:hover {
@@ -126,18 +384,387 @@ main {
 }
 
 #restartButtonDiv:active {
-  background-color: #1a7d37;
+  background-color: #216234;
 }
 #restartButton {
   font-size: 30px;
   color: white;
   line-height: 75px;
+  font-family: 'Mountains of Christmas';
 }
 
-/* .box:active {
-  background-color: #1a7d37;
-} */
+@keyframes restartButtonSlide {
+  0% {transform: translateX(0px) }
+  100% { transform: translateX(600px) }
+}
 
-/* #santaBagImg {
+@keyframes restartButtonSlideOut {
+  0% {transform: translateX(0px) }
+  100% { transform: translateX(1000px) }
+}
+
+
+/* ====================== Room background ===================== */
+#roomContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+#background{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./images/xmasroom.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    background-size: cover;
+}
+
+
+/* ================= Miniature game and animation ==================== */
+#gameMiniatureContainer {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 1050px;
+  top: 155px;
   z-index: 1;
-} */
+}
+
+#gameMiniatureImage{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#gbTop {
+  transform: scale(0.2) skew(-0.02turn, 5deg);
+  position: absolute;
+  left: -97px;
+  top: -190px;
+  box-shadow: 39px -7px 11px 13px rgba(0,0,0,0.54);
+  -webkit-box-shadow: 39px -7px 11px 13px rgba(0,0,0,0.54);
+  -moz-box-shadow: 39px -7px 11px 13px rgba(0,0,0,0.54);
+}
+
+@keyframes gbMiniLift {
+  0% { transform: scale(0.2) }
+  25% { transform:  translateY(33px) scaleX(0.35) scaleY(0.05) }
+  35% { transform:  translateY(-40px) scaleX(0.15) scaleY(0.3) }
+  40% { transform:  translateY(-50px) scaleX(0.2) scaleY(0.2) }
+  100% { transform:  translateY(-2000px) scaleX(0.2) scaleY(0.1) }
+}
+
+#gbTop:hover {
+  filter: brightness(130%);
+  background-color: #fff734;
+  box-shadow:
+    0 0 15px 3px #fff,
+    0 0 25px 7px #fff734,
+    0 0 35px 10px #fffc96;
+    transition: filter, background-color, box-shadow 0.2s;
+}
+
+#gbTop:active {
+  filter: brightness(80%);
+}
+
+#gbCover {
+  position: absolute;
+  left: 54px;
+  top: 62px;
+  transform: scale(0.78);
+}
+
+
+/* ===================== Winner board and animation =================== */
+#winnerBoard {
+  position: absolute;
+  left: 200px;
+  top: 50px;
+  width: 964px;
+  height: 700px;
+  position: relative;
+  z-index: 3;
+}
+
+#winnerBoardInner{
+  position: absolute;
+  left: 246px;
+  top: 76px;
+  width: 655px;
+  height: 285px;
+  background-color: #2d8748;
+}
+
+#xmasWreathImg {
+  width: 800px;
+  height: 400px;
+}
+
+#winnerText{
+  color: white;
+  font-size: 50px;
+  padding-left: 175px;
+  padding-top: 117px;
+  font-family: 'Mountains of Christmas', cursive;
+}
+
+#xmasWreathContainer {
+  position: absolute;
+  left: 171px;
+  top: 15px;
+}
+
+@keyframes winnerBoardSlideIn {
+  0% {transform: translateY(-500px)}
+  85% {transform: translateY(15px)}
+  100% {transform: translateY(0px)}
+}
+
+@keyframes winnerBoardSlideOut {
+  20% {transform: translateY(50px)}
+  100% {transform: translateY(-800px)}
+}
+
+/* ================ Helper to find the game and animation =============== */
+#findGame {
+  position: absolute;
+  right: 120px;
+  top: 185px;
+  width: 120px;
+  height: 40px;
+  opacity: 0.8
+}
+
+#findText {
+  color: white;
+}
+
+@keyframes findGameSlideIn {
+  from {transform: translateX(400px)}
+  to {transform: translateX(0)}
+}
+
+@keyframes findGameFadeOut {
+  from { opacity: 0.8 }
+  to { opacity: 0 }
+}
+
+
+/* ============== Christmas tree lights and animation ======================= */
+#xmasTreeLightsContainer {
+  height: 520px;
+  width: 450px;
+  position: absolute;
+  left: 260px;
+  top: 100px;
+  opacity: 0.5;
+}
+
+.light{
+  height: 1px;
+  width: 1px;
+  border-radius: 1px;
+  position: absolute;
+}
+
+#light0 {
+  background-color: #00ff57;
+  left: 149px;
+  top: 198px;
+  animation: glow 1.2s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #00ff57,
+    0 0 35px 22px #0ff;
+}
+
+#light1 {
+  background-color: #f0f;
+  left: 210px;
+  top: 95px;
+  animation: glow 1s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #f0f,
+    0 0 35px 22px #0ff;
+}
+
+#light2 {
+  background-color: #f0f;
+  left: 405px;
+  top: 365px;
+  animation: glow 1.4s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #f0f,
+    0 0 35px 22px #0ff;
+}
+
+#light3 {
+  background-color: #3448ff;
+  left: 31px;
+  top: 431px;
+  animation: glow 0.9s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #3448ff,
+    0 0 35px 22px #0ff;
+}
+
+#light4 {
+  background-color: #fff734;
+  left: 335px;
+  top: 168px;
+  animation: glow 1.3s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #fff734,
+    0 0 35px 22px #fffc96;
+}
+
+#light5 {
+  background-color: #00ff57;
+  left: 234px;
+  top: 446px;
+  animation: glow 0.8s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #00ff57,
+    0 0 35px 22px #0ff;
+}
+
+#light6 {
+  background-color: #ff0000;
+  left: 222px;
+  top: 286px;
+  animation: glow 0.7s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #ff0000,
+    0 0 35px 22px #ff0070;
+}
+
+#light7 {
+  background-color: #ff5700;
+  left: 277px;
+  top: 18px;
+  animation: glow 1.15s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #ff5700,
+    0 0 35px 22px #ff8b4f;
+}
+
+#light8 {
+  background-color: #3448ff;
+  left: 402px;
+  top: 450px;
+  animation: glow 0.95s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #3448ff,
+    0 0 35px 22px #0ff;
+}
+
+#light9 {
+  background-color: #ff5700;
+  left: 390px;
+  top: 297px;
+  animation: glow 1.08s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #ff5700,
+    0 0 35px 22px #ff8b4f;
+}
+
+#light10 {
+  background-color: #ff0000;
+  left: 60px;
+  top: 330px;
+  animation: glow 1.03s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 7px #fff,
+    0 0 25px 15px #ff0000,
+    0 0 35px 22px #ff0070;
+}
+
+@keyframes glow {
+  from {transform: scale(1)}
+  to {transform: scale(0.2)}
+}
+
+
+/* ================== Fireplace lights and animation ================== */
+#fireplaceLightsContainer{
+  width: 570px;
+  height: 350px;
+  position: absolute;
+  left: 750px;
+  top: 150px;
+  opacity: 0.5;
+}
+
+#lightMono1 {
+  background-color: #fff734;
+  position: absolute;
+  left: 150px;
+  top: 95px;
+  animation: glow 1s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 3px #fff,
+    0 0 25px 7px #fff734,
+    0 0 35px 13px #fffc96;
+}
+
+#lightMono2 {
+  background-color: #fff734;
+  position: absolute;
+  left: 320px;
+  top: 120px;
+  animation: glow 0.8s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 3px #fff,
+    0 0 25px 7px #fff734,
+    0 0 35px 13px #fffc96;
+}
+
+#lightMono2 {
+  background-color: #fff734;
+  position: absolute;
+  left: 485px;
+  top: 300px;
+  animation: glow 0.9s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 3px #fff,
+    0 0 25px 7px #fff734,
+    0 0 35px 13px #fffc96;
+}
+
+#lightMono3 {
+  background-color: #fff734;
+  position: absolute;
+  left: 500px;
+  top: 170px;
+  animation: glow 1.1s infinite;
+  animation-direction: alternate;
+  box-shadow:
+    0 0 15px 3px #fff,
+    0 0 25px 10px #fff734,
+    0 0 35px 13px #fffc96;
+}
